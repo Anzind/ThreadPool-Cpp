@@ -31,7 +31,7 @@ public:
 	~ThreadPool();
 
 	/* 添加任务 */
-	void addTask(function<void(void)>);
+	void addTask(function<void()> task);
 
 private:
 	void manager();
@@ -49,7 +49,7 @@ private:
 	atomic<int> exitThread;
 	atomic<bool> shutdown;
 
-	queue<function<void(void)>> taskQ;
+	queue<function<void()>> taskQ;
 	mutex queueMutex;
 	mutex idsMutex;
 	condition_variable condition;
